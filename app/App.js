@@ -16,20 +16,21 @@ import Splash from './src/Splash';
 
 const HomeNavigator = createStackNavigator(
   {
-    Home: {screen: Home},
-    About: {screen: About},
-  },
-  {
-    defaultNavigationOptions: ({navigation}) => ({
+    'Home': {screen: Home,
+    navigationOptions: ({navigation}) => ({
       headerLeft: () => (
         <TouchableOpacity
           style={{marginLeft: 20}}
           onPress={() => navigation.toggleDrawer()}>
           <Icon name="indent" size={25} />
         </TouchableOpacity>
-      ),
-    }),
+      )
+    })},
+    'About': {screen: About}
   },
+  {
+    initialRouteName : 'Home'
+  }
 );
 
 const SettingNavigator = createStackNavigator(
@@ -50,19 +51,22 @@ const SettingNavigator = createStackNavigator(
 );
 
 const DrawerNavigator = createDrawerNavigator({
-  Home: {
+  'Home': {
     navigationOptions: {
       drawerLabel: 'Home',
     },
     screen: HomeNavigator,
   },
-  Setting: {
+  'Setting': {
     navigationOptions: {
       drawerLabel: 'Setting',
     },
     screen: SettingNavigator,
   },
+},{
+  initialRouteName : "Home"
 });
+
 
 const AppSwitchNavigator = createSwitchNavigator({
   'Splash' : {screen : Splash},
